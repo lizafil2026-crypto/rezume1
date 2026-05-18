@@ -1,0 +1,446 @@
+
+= """<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резюме — Nordic-SPA / Специалист отдела заботы о гостях</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: #f5f5f0;
+            color: #3d3d3d;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 8px 40px rgba(107, 142, 35, 0.12);
+        }
+        .header {
+            background: linear-gradient(160deg, #556b2f 0%, #6b8e23 40%, #8fbc8f 100%);
+            color: white;
+            padding: 50px 55px 45px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -15%;
+            width: 350px;
+            height: 350px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 250px;
+            height: 250px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+        .name-block h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .position-title {
+            font-size: 15px;
+            font-weight: 400;
+            opacity: 0.92;
+            background: rgba(255,255,255,0.18);
+            padding: 8px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
+        }
+        .contact-info {
+            text-align: right;
+            font-size: 14px;
+            font-weight: 300;
+        }
+        .contact-info div {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .icon {
+            width: 22px;
+            height: 22px;
+            background: rgba(255,255,255,0.22);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+        .meta-bar {
+            background: #f0f4e8;
+            padding: 18px 55px;
+            display: flex;
+            gap: 35px;
+            font-size: 13px;
+            color: #556b2f;
+            border-bottom: 1px solid #d4dcc4;
+            font-weight: 500;
+        }
+        .meta-item strong {
+            color: #3d4d22;
+            margin-right: 6px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 45px 55px;
+        }
+        .section {
+            margin-bottom: 38px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #556b2f;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #8fbc8f;
+            display: inline-block;
+        }
+        .about-text {
+            font-size: 15px;
+            color: #4a4a4a;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+        .about-text strong {
+            color: #556b2f;
+            font-weight: 500;
+        }
+        .motivation-box {
+            background: linear-gradient(135deg, #f0f4e8, #e8eed8);
+            border-left: 4px solid #6b8e23;
+            padding: 22px 28px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 30px;
+            font-size: 15px;
+            color: #4a4a4a;
+            line-height: 1.8;
+            font-style: italic;
+        }
+        .job {
+            margin-bottom: 30px;
+            padding-left: 22px;
+            border-left: 3px solid #d4dcc4;
+            transition: border-color 0.3s;
+        }
+        .job:hover {
+            border-left-color: #6b8e23;
+        }
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+        .job-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #3d4d22;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        .job-period {
+            font-size: 13px;
+            color: #7a8a5a;
+            font-weight: 500;
+            background: #f0f4e8;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+        .job-company {
+            font-size: 14px;
+            color: #6b8e23;
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+        }
+        .job-desc {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .job-desc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .job-desc li {
+            padding-left: 22px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        .job-desc li::before {
+            content: '◦';
+            position: absolute;
+            left: 0;
+            color: #6b8e23;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+        .highlight {
+            background: #f0f4e8;
+            padding: 3px 10px;
+            border-radius: 6px;
+            color: #556b2f;
+            font-weight: 500;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .skill-item {
+            background: #f5f7f0;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            border-left: 3px solid #6b8e23;
+            color: #4a4a4a;
+            font-weight: 400;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .skill-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(107, 142, 35, 0.1);
+        }
+        .education-block {
+            background: linear-gradient(135deg, #f5f7f0, #f0f4e8);
+            padding: 22px 28px;
+            border-radius: 12px;
+            border-left: 4px solid #6b8e23;
+        }
+        .edu-name {
+            font-weight: 600;
+            color: #3d4d22;
+            margin-bottom: 6px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 15px;
+        }
+        .edu-details {
+            font-size: 14px;
+            color: #5a5a5a;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        .traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .trait {
+            background: linear-gradient(135deg, #6b8e23, #556b2f);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 8px rgba(107, 142, 35, 0.2);
+        }
+        .footer-quote {
+            text-align: center;
+            padding: 30px 55px 40px;
+            background: #f5f7f0;
+            color: #6b8e23;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 16px;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .trait { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-top">
+                <div class="name-block">
+                    <h1>ФИЛИППОВА ЕЛИЗАВЕТА<br>ЕВГЕНЬЕВНА</h1>
+                    <div class="position-title">Специалист отдела заботы о гостях / Гостевой сервис</div>
+                </div>
+                <div class="contact-info">
+                    <div><span class="icon">📞</span> +7 (999) 797-52-28</div>
+                    <div><span class="icon">✉</span> elizabethfil1996@icloud.com</div>
+                    <div><span class="icon">📍</span> Калининград, удалённый формат</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="meta-bar">
+            <div class="meta-item"><strong>Формат:</strong> удалённо</div>
+            <div class="meta-item"><strong>График:</strong> 2/2</div>
+            <div class="meta-item"><strong>Занятость:</strong> полная</div>
+            <div class="meta-item"><strong>Зарплата:</strong> от 50 000 ₽</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <div class="motivation-box">
+                    «Меня вдохновляет идея создания пространства, где люди чувствуют заботу и внимание к деталям. 
+                    Вижу в этой роли возможность объединить свой опыт клиентского сервиса с искренним желанием 
+                    делать гостей счастливее — через внимательное общение, бережное бронирование и тёплый сервис.»
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Профессиональный профиль</div>
+                <p class="about-text">
+                    Специалист с <strong>6+ годами опыта</strong> в клиентском сервисе, поддержке и управлении 
+                    отношениями с клиентами. Умею создавать атмосферу доверия через внимательное общение, 
+                    решать вопросы оперативно и с заботой. Опыт работы с <span class="highlight">CRM-системами</span>, 
+                    телефонными консультациями, мессенджерами и электронной почтой. 
+                    Люблю многозадачность, ценю спокойную рабочую среду и командную поддержку.
+                </p>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Опыт работы — 6 лет 5 месяцев</div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div class="job-title">Менеджер по работе с клиентами / Куратор проектов</div>
+                        <div class="job-period">Ноябрь 2022 — Февраль 2026</div>
+                    </div>
+                    <div class="job-company">ИП Савкин / CRM Academy</div>
+                    <div class="job-desc">
+                        <ul>
+                            <li><strong>Клиентский сервис:</strong> консультации по телефону и в мессенджерах, помощь с выбором решений</li>
+                            <li><strong>CRM-ведение:</strong> заполнение Битрикс24, контроль бронирований и сделок, подготовка отчётности</li>
+                            <li><strong>Обработка обращений:</strong> приём заявок, оперативная маршрутизация, контроль решения</li>
+                            <li><strong>Забота после сделки:</strong> сбор обратной связи, опросы удовлетворённости, работа с возражениями</li>
+                            <li><strong>Координация:</strong> взаимодействие с техническим, финансовым и юридическим отделами</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div class="job-title">Менеджер по работе с клиентами</div>
+                        <div class="job-period">Октябрь 2019 — Январь 2021</div>
+                    </div>
+                    <div class="job-company">ООО «СОЛЬ»</div>
+                    <div class="job-desc">
+                        <ul>
+                            <li><strong>Телефонные консультации:</strong> первичные переговоры, презентация услуг, помощь с выбором</li>
+                            <li><strong>Бронирование и оформление:</strong> формирование заявок, согласование условий, подготовка документов</li>
+                            <li><strong>Письменная коммуникация:</strong> переписка с клиентами по email, подготовка предложений</li>
+                            <li><strong>Контроль качества:</strong> обеспечение ежемесячных оплат, ведение отчётности, анализ обращений</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div class="job-title">Специалист клиентской поддержки</div>
+                        <div class="job-period">Март 2018 — Январь 2019</div>
+                    </div>
+                    <div class="job-company">ООО «1С-БИТРИКС»</div>
+                    <div class="job-desc">
+                        <ul>
+                            <li><strong>Многоканальная поддержка:</strong> ответы в чате, по email и телефону на вопросы клиентов</li>
+                            <li><strong>Консультации и обучение:</strong> помощь с настройкой сервиса, разъяснение функционала</li>
+                            <li><strong>База знаний:</strong> подготовка понятных инструкций и ответов для пользователей</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div class="job-title">Консультант</div>
+                        <div class="job-period">Февраль 2017 — Январь 2018</div>
+                    </div>
+                    <div class="job-company">ПАО Сбербанк</div>
+                    <div class="job-desc">
+                        <ul>
+                            <li><strong>Личное обслуживание:</strong> внимательное общение с клиентами, решение сложных ситуаций</li>
+                            <li><strong>Эмпатия и забота:</strong> работа с претензиями, восстановление доверия, поиск win-win решений</li>
+                            <li><strong>Документация:</strong> ведение записей, отчётность, работа с CRM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Образование</div>
+                <div class="education-block">
+                    <div class="edu-name">РАНХиГС при Президенте РФ, Москва</div>
+                    <div class="edu-details">
+                        Факультет: Экономика и банковское дело<br>
+                        Специальность: Бухгалтерский учёт, анализ и аудит, финансы, управление<br>
+                        Год окончания: 2018 | Форма обучения: очная
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Ключевые компетенции</div>
+                <div class="skills-grid">
+                    <div class="skill-item">Телефонные консультации и мягкие продажи</div>
+                    <div class="skill-item">Работа с CRM: Битрикс24, ведение бронирований</div>
+                    <div class="skill-item">Многоканальная коммуникация: чаты, email, звонки</div>
+                    <div class="skill-item">Обработка заявок и оперативная маршрутизация</div>
+                    <div class="skill-item">Сбор обратной связи и опросы удовлетворённости</div>
+                    <div class="skill-item">Эмпатия, внимательность, забота о клиенте</div>
+                    <div class="skill-item">Многозадачность в спокойном темпе</div>
+                    <div class="skill-item">Документооборот и отчётность</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Личные качества</div>
+                <div class="traits">
+                    <span class="trait">Внимательность к деталям</span>
+                    <span class="trait">Эмпатия и забота</span>
+                    <span class="trait">Ответственность</span>
+                    <span class="trait">Многозадачность</span>
+                    <span class="trait">Спокойствие под давлением</span>
+                    <span class="trait">Командность</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-quote">
+            «Внимание к деталям — это тихая забота, которую чувствуют гости»
+        </div>
+    </div>
+</body>
+</html>"""
+
